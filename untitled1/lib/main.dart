@@ -11,227 +11,7 @@ void main() {
     home: MyHomePage(),
   ));
 }
-//
-// var _bmi = Get.arguments;
-//
-// class MyApp extends StatelessWidget {
-//   @override
-//   Widget build(BuildContext context) {
-//     return Container(
-//         decoration: BoxDecoration(
-//           image: DecorationImage(
-//             fit: BoxFit.cover,
-//             image: AssetImage('assets/picture.png'), // 배경 이미지
-//           ),
-//         ),
-//         child: Padding(
-//             padding: const EdgeInsets.symmetric(vertical: 20),
-//
-//             // appBar: AppBar(
-//             //   title: Text("Main page"),
-//             // ),
-//             child:
-//                 Column(mainAxisAlignment: MainAxisAlignment.start, children: [
-//               Material(
-//                 color: Colors.transparent,
-//                 child: Container(
-//                   margin: EdgeInsets.only(top: 100),
-//                   width: 160,
-//                   height: 80,
-//                   child: Text(
-//                     "바라다",
-//                     textAlign: TextAlign.center,
-//                     style: TextStyle(
-//                         fontFamily: "newone",
-//                         fontSize: 45,
-//                         color: Colors.black),
-//                   ),
-//                 ),
-//               ),
-//                   Material(
-//                     color: Colors.transparent,
-//                     child: Container(
-//                       margin: EdgeInsets.only(bottom:30),
-//                       width: 180,
-//                       height: 20,
-//                       child: Text(
-//                         "수험생활 건강 지킴이",
-//                         textAlign: TextAlign.center,
-//                         style: TextStyle(
-//                             fontFamily: "newone",
-//                             fontSize: 13,
-//                             color: Colors.black),
-//                       ),
-//                     ),
-//                   ),
-//               Row(
-//                 mainAxisAlignment: MainAxisAlignment.center,
-//                 children: <Widget>[
-//                   Container(
-//                     margin: EdgeInsets.all(10),
-//                     width: 160,
-//                     height: 45,
-//                     decoration: BoxDecoration(
-//                       borderRadius: BorderRadius.circular(30),
-//                       gradient: LinearGradient(
-//                         begin: Alignment.centerLeft,
-//                         end: Alignment.centerRight,
-//                         colors: [Color(0xffFED9E8), Color(0xffFED9E8)],
-//                       ),
-//                     ),
-//                     child: MaterialButton(
-//                       materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
-//                       shape: StadiumBorder(),
-//                       onPressed: () {
-//                         Navigator.push(context,
-//                             MaterialPageRoute(builder: (_) => caffeine()));
-//                       },
-//                       child: Padding(
-//                         padding: const EdgeInsets.all(8.0),
-//                         child: Row(
-//                           mainAxisAlignment: MainAxisAlignment.center,
-//                           children: <Widget>[
-//                             Text(
-//                               '카페인 계산',
-//                               style: TextStyle(
-//                                   fontSize: 25,
-//                                   color: Colors.black,
-//                                   fontFamily: 'Cafe'),
-//                             ),
-//                           ],
-//                         ),
-//                       ),
-//                     ),
-//                     // child: ElevatedButton(
-//                     //   onPressed: () { Navigator.push(
-//                     //       context, MaterialPageRoute(builder: (_) => caffeine())); },
-//                     //   child: Text("Go to caffeine Page"),
-//                     // ),
-//                   ),
-//                   Container(
-//                     margin: EdgeInsets.all(10),
-//                     width: 115,
-//                     height: 45,
-//                     decoration: BoxDecoration(
-//                       borderRadius: BorderRadius.circular(80),
-//                       gradient: LinearGradient(
-//                         begin: Alignment.centerLeft,
-//                         end: Alignment.centerRight,
-//                         colors: [Color(0xffFED9E8), Color(0xffFED9E8)],
-//                       ),
-//                     ),
-//                     child: MaterialButton(
-//                       materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
-//                       shape: StadiumBorder(),
-//                       onPressed: () {
-//                         Get.to(() => bmiPage());
-//                       },
-//                       child: Padding(
-//                         padding: const EdgeInsets.all(8.0),
-//                         child: Row(
-//                           mainAxisAlignment: MainAxisAlignment.center,
-//                           children: <Widget>[
-//                             Text(
-//                               'BMI',
-//                               style: TextStyle(
-//                                   fontSize: 25,
-//                                   color: Colors.black,
-//                                   fontFamily: 'Cafe'),
-//                             ),
-//                           ],
-//                         ),
-//                       ),
-//                     ),
-//                   ),
-//                 ],
-//               ),
-//               Row(
-//                 mainAxisAlignment: MainAxisAlignment.center,
-//                 children: <Widget>[
-//                   Container(
-//                     margin: EdgeInsets.all(10),
-//                     width: 160,
-//                     height: 45,
-//                     decoration: BoxDecoration(
-//                       borderRadius: BorderRadius.circular(30),
-//                       gradient: LinearGradient(
-//                         begin: Alignment.centerLeft,
-//                         end: Alignment.centerRight,
-//                         colors: [Color(0xffFED9E8), Color(0xffFED9E8)],
-//                       ),
-//                     ),
-//                     child: MaterialButton(
-//                       materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
-//                       shape: StadiumBorder(),
-//                       onPressed: () {
-//                         Navigator.push(context,
-//                             MaterialPageRoute(builder: (_) => caffeine()));
-//                       },
-//                       child: Padding(
-//                         padding: const EdgeInsets.all(8.0),
-//                         child: Row(
-//                           mainAxisAlignment: MainAxisAlignment.center,
-//                           children: <Widget>[
-//                             Text(
-//                               '카페인 계산',
-//                               style: TextStyle(
-//                                   fontSize: 25,
-//                                   color: Colors.black,
-//                                   fontFamily: 'Cafe'),
-//                             ),
-//                           ],
-//                         ),
-//                       ),
-//                     ),
-//                     // child: ElevatedButton(
-//                     //   onPressed: () { Navigator.push(
-//                     //       context, MaterialPageRoute(builder: (_) => caffeine())); },
-//                     //   child: Text("Go to caffeine Page"),
-//                     // ),
-//                   ),
-//                   Container(
-//                     margin: EdgeInsets.all(10),
-//                     width: 115,
-//                     height: 45,
-//                     decoration: BoxDecoration(
-//                       borderRadius: BorderRadius.circular(80),
-//                       gradient: LinearGradient(
-//                         begin: Alignment.centerLeft,
-//                         end: Alignment.centerRight,
-//                         colors: [Color(0xffFED9E8), Color(0xffFED9E8)],
-//                       ),
-//                     ),
-//                     child: MaterialButton(
-//                       materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
-//                       shape: StadiumBorder(),
-//                       onPressed: () {
-//                         Get.to(() => bmiPage());
-//                       },
-//                       child: Padding(
-//                         padding: const EdgeInsets.all(8.0),
-//                         child: Row(
-//                           mainAxisAlignment: MainAxisAlignment.center,
-//                           children: <Widget>[
-//                             Text(
-//                               'BMI',
-//                               style: TextStyle(
-//                                   fontSize: 25,
-//                                   color: Colors.black,
-//                                   fontFamily: 'Cafe'),
-//                             ),
-//                           ],
-//                         ),
-//                       ),
-//                     ),
-//                   ),
-//                 ],
-//               ),
-//
-//             ])));
-//   }
-// }
 
-//**************************************************************************************
 class MyHomePage extends StatefulWidget {
   @override
   _MyHomePageState createState() => _MyHomePageState();
@@ -242,22 +22,22 @@ class _MyHomePageState extends State<MyHomePage> {
   var _caffeine;
   var _weight;
 
-  void cal() {
-    if (_caffeine == null) {
-      _caffeine = 0;
-    }
-    if (Get.arguments != null){
-      _bmi = Get.arguments['name'];
-      _caffeine = Get.arguments['caffeine'];
-      _weight  = Get.arguments['weight'];
-    }else{
-      ScaffoldMessenger.of(context).showSnackBar(
-        const SnackBar(
-          content: Text('값이 없습니다.'),
-        ),
-      );
-    }
-  }
+  // void cal() {
+  //   if (_caffeine == null) {
+  //     _caffeine = 0;
+  //   }
+  //   if (Get.arguments == null){
+  //   //   _bmi = Get.arguments['bmi'];
+  //   //   _caffeine = Get.arguments['caffeine'];
+  //   //   _weight  = Get.arguments['weight'];
+  //   // }else{
+  //     ScaffoldMessenger.of(context).showSnackBar(
+  //       const SnackBar(
+  //         content: Text('값이 없습니다.'),
+  //       ),
+  //     );
+  //   }
+  // }
 
   @override
   Widget build(BuildContext context) {
@@ -378,8 +158,13 @@ class _MyHomePageState extends State<MyHomePage> {
                                   materialTapTargetSize:
                                       MaterialTapTargetSize.shrinkWrap,
                                   shape: StadiumBorder(),
-                                  onPressed: () {
-                                    Get.to(() => bmiPage(), arguments: {'bmi': _bmi});
+                                  onPressed: () async {
+                                    // Get.to(() => bmiPage(), arguments: {'bmi': _bmi});
+                                    final bmi = await Get.to(bmiPage());
+
+                                    setState(() {
+                                      _bmi = bmi;
+                                    });
                                   },
                                   child: Padding(
                                     padding: const EdgeInsets.all(8.0),
@@ -519,10 +304,7 @@ class _MyHomePageState extends State<MyHomePage> {
                                               ),
                                               Container(
                                                 child: Text(
-                                                  _bmi == null
-                                                      ? '입력하세요'
-                                                      : _bmi!
-                                                          .toStringAsFixed(2),
+                                                  '$_bmi',
                                                   style: TextStyle(
                                                       fontSize: 20,
                                                       color: Colors.white,fontFamily: 'CafeL'),
@@ -546,7 +328,7 @@ class _MyHomePageState extends State<MyHomePage> {
                                               Container(
                                                 child: Text(
                                                   _caffeine == null
-                                                      ? '-'
+                                                      ? 'null'
                                                       : _caffeine!
                                                           .toStringAsFixed(1),
                                                   style: TextStyle(
@@ -562,10 +344,11 @@ class _MyHomePageState extends State<MyHomePage> {
                         ])),
               ]),
             ),
-            floatingActionButton: FloatingActionButton(
-              onPressed: cal,
-              child: Text("🔄"),
-            )));
+            // floatingActionButton: FloatingActionButton(
+            //   onPressed: pass,
+            //   child: Text("🔄"),
+            // )
+        ));
   }
 }
 

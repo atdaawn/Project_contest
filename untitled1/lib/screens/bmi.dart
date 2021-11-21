@@ -20,7 +20,7 @@ class bmiPage extends StatefulWidget {
 }
 
 class _bmiPageState extends State<bmiPage> {
-  var _bmi =  Get.arguments['bmi'];
+  var _bmi;
   var _weight;
   // the controller for the text field associated with "height"
   final _heightController = TextEditingController();
@@ -172,7 +172,8 @@ class _bmiPageState extends State<bmiPage> {
                     style: TextStyle(color: Colors.black, fontFamily: 'aggroL'),
                   ),
                   onPressed: () {
-                    Get.to(() => MyHomePage(), arguments: {'bmi': _bmi, 'weight':_weight});
+                    // Get.to(() => MyHomePage(), arguments: {'bmi': _bmi, 'weight':_weight});
+                    Get.back(result: _bmi.toStringAsFixed(2));
                   })
             ]))));
   }
