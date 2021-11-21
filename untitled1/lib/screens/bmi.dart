@@ -7,7 +7,7 @@ class bmi extends StatelessWidget {
   Widget build(BuildContext context) {
     return GetMaterialApp(
       debugShowCheckedModeBanner: false,
-      theme: ThemeData(fontFamily: 'Cafe'),
+      theme: ThemeData(fontFamily: 'CafeL'),
       title: 'bmi 측정기',
       home: bmiPage(),
     );
@@ -54,7 +54,7 @@ class _bmiPageState extends State<bmiPage> {
       if (_bmi! < 18.5) {
         _message = "저체중이에요!";
       } else if (_bmi! < 25) {
-        _message = '정상입니다~';
+        _message = '정상입니다';
       } else if (_bmi! < 30) {
         _message = '과체중이에요!';
       } else {
@@ -63,38 +63,46 @@ class _bmiPageState extends State<bmiPage> {
     });
   }
 
+  // void goout(){
+  //   final double? height = double.tryParse(_heightController.value.text);
+  //   final double? weight = double.tryParse(_weightController.value.text);
+  //   if (height == null || height <= 0 || weight == null || weight <= 0) {
+  //     setState(() {
+  //       _message = "키와 몸무게 입력이 잘못되었어요";
+  //       return False
+  //     });
+  // }
+
   @override
   Widget build(BuildContext context) {
     return Container(
         decoration: BoxDecoration(
           image: DecorationImage(
             fit: BoxFit.cover,
-            image: AssetImage('assets/picture.png'), // 배경 이미지
+            image: AssetImage('assets/bmi.jpg'), // 배경 이미지
           ),
         ),
         child: Scaffold(
-            resizeToAvoidBottomInset : false,
+            resizeToAvoidBottomInset: false,
             backgroundColor: Colors.transparent,
             body: Center(
                 child: Column(children: <Widget>[
-                  Material(
-                    color: Colors.transparent,
-                    child: Container(
-                      margin: EdgeInsets.only(top: 120),
-                      width: 250,
-                      height: 60,
-                      child: Text(
-                        "BMI 계산하기",
-                        textAlign: TextAlign.center,
-                        style: TextStyle(
-                            fontFamily: "aggroB",
-                            fontSize: 38,
-                            color: Colors.black),
-                      ),
-                    ),
+              Material(
+                color: Colors.transparent,
+                child: Container(
+                  margin: EdgeInsets.only(top: 100),
+                  width: 250,
+                  height: 60,
+                  child: Text(
+                    "BMI 계산하기",
+                    textAlign: TextAlign.center,
+                    style: TextStyle(
+                        fontFamily: "Cafe", fontSize: 38, color: Colors.white),
                   ),
+                ),
+              ),
               Container(
-                margin: EdgeInsets.only(top:20, bottom: 20),
+                margin: EdgeInsets.only(bottom: 10),
                 width: 320,
                 child: Card(
                   color: Colors.white,
@@ -120,7 +128,13 @@ class _bmiPageState extends State<bmiPage> {
                         ),
                         ElevatedButton(
                           onPressed: _calculate,
-                          child: Text('계산', style: TextStyle(fontFamily: 'aggroB'),),
+                          style: ElevatedButton.styleFrom(
+                              primary: Color(0xffFED9E8),
+                              onPrimary: Colors.black),
+                          child: Text(
+                            '계산',
+                            style: TextStyle(fontFamily: 'CafeL'),
+                          ),
                         ),
                         SizedBox(
                           height: 30,
@@ -147,13 +161,16 @@ class _bmiPageState extends State<bmiPage> {
                   ),
                 ),
               ),
-              // ElevatedButton(
-              //     style: ElevatedButton.styleFrom(
-              //         primary: Colors.cyan, onPrimary: Colors.white),
-              //     child: Icon(Icons.home, color: Colors.white),
-              //     onPressed: () {
-              //       Get.to(() => MyApp(), arguments: _bmi);
-              //     })
+              ElevatedButton(
+                  style: ElevatedButton.styleFrom(
+                      primary: Color(0xffdbbae0), onPrimary: Colors.white),
+                  child: Text(
+                    "저장",
+                    style: TextStyle(color: Colors.black, fontFamily: 'aggroL'),
+                  ),
+                  onPressed: () {
+                    Get.to(() => MyHomePage(), arguments: _bmi);
+                  })
             ]))));
   }
 }

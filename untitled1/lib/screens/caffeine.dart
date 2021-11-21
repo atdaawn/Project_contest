@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
 import 'result_Caffeine.dart';
+import 'package:get/get.dart';
 
 class caffeine extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
+    return GetMaterialApp(
       title: '카페인 측정기',
       theme: ThemeData(
         primarySwatch: Colors.blue,
@@ -35,9 +36,6 @@ class _CInputFormState extends State<CInputForm> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: AppBar(
-          title: Text('BMI CALCULATE'),
-        ),
         body: Center(
           child: Container(
               padding: const EdgeInsets.all(15.0),

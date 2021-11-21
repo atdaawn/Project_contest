@@ -42,10 +42,11 @@ dev_dependencies:
 flutter:
   assets:
     - assets/picture.png
+    - assets/bmi.jpg
   fonts:
     - family: Cafe
       fonts:
-        - asset: Fonts/Cafe24Oneprettynight.ttf
+        - asset: Fonts/Cafe24Ssurround.ttf
     - family: newone
       fonts:
         - asset: Fonts/newfont.ttf
@@ -55,6 +56,9 @@ flutter:
     - family: aggroL
       fonts:
         - asset: Fonts/LightAggro.ttf
+    - family: CafeL
+      fonts:
+        - asset: Fonts/Cafe24SsurroundAir.ttf
 
   # The following line ensures that the Material Icons font is
   # included with your application, so that you can use the icons in
