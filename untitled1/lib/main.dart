@@ -6,7 +6,7 @@ import 'package:get/get.dart';
 
 void main() {
   runApp(GetMaterialApp(
-    title: 'Navigation Basics',
+    title: 'Mainpage',
     theme: ThemeData(fontFamily: 'Cafe'),
     home: MyApp(),
   ));
@@ -23,99 +23,209 @@ class MyApp extends StatelessWidget {
           ),
         ),
         child: Padding(
-            padding: const EdgeInsets.symmetric(vertical: 40),
+            padding: const EdgeInsets.symmetric(vertical: 20),
+
             // appBar: AppBar(
             //   title: Text("Main page"),
             // ),
-            child: Column(
-                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                children: [
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceAround,
-                    children: <Widget>[
-                      Container(
-                        margin: EdgeInsets.all(10),
-                        width: 160,
-                        height: 45,
-                        decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(80),
-                          gradient: LinearGradient(
-                            begin: Alignment.centerLeft,
-                            end: Alignment.centerRight,
-                            colors: [Color(0xffffae88), Color(0xffff8484)],
-                          ),
-                        ),
-                        child: MaterialButton(
-                          materialTapTargetSize:
-                              MaterialTapTargetSize.shrinkWrap,
-                          shape: StadiumBorder(),
-                          onPressed: () {
-                            Navigator.push(context,
-                                MaterialPageRoute(builder: (_) => caffeine()));
-                          },
-                          child: Padding(
-                            padding: const EdgeInsets.all(8.0),
-                            child: Row(
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              children: <Widget>[
-                                Text(
-                                  '카페인 계산',
-                                  style: TextStyle(
-                                      fontSize: 20,
-                                      color: Colors.white,
-                                      fontFamily: 'newone'),
-                                ),
-                              ],
-                            ),
-                          ),
-                        ),
-                        // child: ElevatedButton(
-                        //   onPressed: () { Navigator.push(
-                        //       context, MaterialPageRoute(builder: (_) => caffeine())); },
-                        //   child: Text("Go to caffeine Page"),
-                        // ),
-                      ),
-                      Container(
-                        margin: EdgeInsets.all(10),
-                        width: 115,
-                        height: 45,
-                        decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(80),
-                          gradient: LinearGradient(
-                            begin: Alignment.centerLeft,
-                            end: Alignment.centerRight,
-                            colors: [Color(0xffffae88), Color(0xffff8484)],
-                          ),
-                        ),
-                        child: MaterialButton(
-                          materialTapTargetSize:
-                              MaterialTapTargetSize.shrinkWrap,
-                          shape: StadiumBorder(),
-                          onPressed: () {
-                            Get.to(() => bmiPage());
-                          },
-                          child: Padding(
-                            padding: const EdgeInsets.all(8.0),
-                            child: Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                              children: <Widget>[
-                                Text(
-                                  'BMI',
-                                  style: TextStyle(
-                                      fontSize: 20,
-                                      color: Colors.white,
-                                      fontFamily: 'Cafe'),
-                                ),
-                                Icon(Icons.addchart_rounded,
-                                    color: Colors.white),
-                              ],
-                            ),
-                          ),
-                        ),
-                      ),
-                    ],
+            child:
+                Column(mainAxisAlignment: MainAxisAlignment.start, children: [
+              Material(
+                color: Colors.transparent,
+                child: Container(
+                  margin: EdgeInsets.only(top: 100),
+                  width: 160,
+                  height: 80,
+                  child: Text(
+                    "바라다",
+                    textAlign: TextAlign.center,
+                    style: TextStyle(
+                        fontFamily: "newone",
+                        fontSize: 45,
+                        color: Colors.black),
                   ),
-                ])));
+                ),
+              ),
+                  Material(
+                    color: Colors.transparent,
+                    child: Container(
+                      margin: EdgeInsets.only(bottom:30),
+                      width: 180,
+                      height: 20,
+                      child: Text(
+                        "수험생활 건강 지킴이",
+                        textAlign: TextAlign.center,
+                        style: TextStyle(
+                            fontFamily: "newone",
+                            fontSize: 13,
+                            color: Colors.black),
+                      ),
+                    ),
+                  ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: <Widget>[
+                  Container(
+                    margin: EdgeInsets.all(10),
+                    width: 160,
+                    height: 45,
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(30),
+                      gradient: LinearGradient(
+                        begin: Alignment.centerLeft,
+                        end: Alignment.centerRight,
+                        colors: [Color(0xff797773), Color(0xff7f7f7f)],
+                      ),
+                    ),
+                    child: MaterialButton(
+                      materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
+                      shape: StadiumBorder(),
+                      onPressed: () {
+                        Navigator.push(context,
+                            MaterialPageRoute(builder: (_) => caffeine()));
+                      },
+                      child: Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: <Widget>[
+                            Text(
+                              '카페인 계산',
+                              style: TextStyle(
+                                  fontSize: 25,
+                                  color: Colors.white,
+                                  fontFamily: 'Cafe'),
+                            ),
+                          ],
+                        ),
+                      ),
+                    ),
+                    // child: ElevatedButton(
+                    //   onPressed: () { Navigator.push(
+                    //       context, MaterialPageRoute(builder: (_) => caffeine())); },
+                    //   child: Text("Go to caffeine Page"),
+                    // ),
+                  ),
+                  Container(
+                    margin: EdgeInsets.all(10),
+                    width: 115,
+                    height: 45,
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(80),
+                      gradient: LinearGradient(
+                        begin: Alignment.centerLeft,
+                        end: Alignment.centerRight,
+                        colors: [Color(0xff797773), Color(0xff7f7f7f)],
+                      ),
+                    ),
+                    child: MaterialButton(
+                      materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
+                      shape: StadiumBorder(),
+                      onPressed: () {
+                        Get.to(() => bmiPage());
+                      },
+                      child: Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: <Widget>[
+                            Text(
+                              'BMI',
+                              style: TextStyle(
+                                  fontSize: 25,
+                                  color: Colors.white,
+                                  fontFamily: 'Cafe'),
+                            ),
+                          ],
+                        ),
+                      ),
+                    ),
+                  ),
+                ],
+              ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: <Widget>[
+                  Container(
+                    margin: EdgeInsets.all(10),
+                    width: 160,
+                    height: 45,
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(30),
+                      gradient: LinearGradient(
+                        begin: Alignment.centerLeft,
+                        end: Alignment.centerRight,
+                        colors: [Color(0xff797773), Color(0xff7f7f7f)],
+                      ),
+                    ),
+                    child: MaterialButton(
+                      materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
+                      shape: StadiumBorder(),
+                      onPressed: () {
+                        Navigator.push(context,
+                            MaterialPageRoute(builder: (_) => caffeine()));
+                      },
+                      child: Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: <Widget>[
+                            Text(
+                              '카페인 계산',
+                              style: TextStyle(
+                                  fontSize: 25,
+                                  color: Colors.white,
+                                  fontFamily: 'Cafe'),
+                            ),
+                          ],
+                        ),
+                      ),
+                    ),
+                    // child: ElevatedButton(
+                    //   onPressed: () { Navigator.push(
+                    //       context, MaterialPageRoute(builder: (_) => caffeine())); },
+                    //   child: Text("Go to caffeine Page"),
+                    // ),
+                  ),
+                  Container(
+                    margin: EdgeInsets.all(10),
+                    width: 115,
+                    height: 45,
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(80),
+                      gradient: LinearGradient(
+                        begin: Alignment.centerLeft,
+                        end: Alignment.centerRight,
+                        colors: [Color(0xff797773), Color(0xff7f7f7f)],
+                      ),
+                    ),
+                    child: MaterialButton(
+                      materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
+                      shape: StadiumBorder(),
+                      onPressed: () {
+                        Get.to(() => bmiPage());
+                      },
+                      child: Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: <Widget>[
+                            Text(
+                              'BMI',
+                              style: TextStyle(
+                                  fontSize: 25,
+                                  color: Colors.white,
+                                  fontFamily: 'Cafe'),
+                            ),
+                          ],
+                        ),
+                      ),
+                    ),
+                  ),
+                ],
+              ),
+
+            ])));
   }
 }
 
