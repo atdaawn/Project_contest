@@ -80,21 +80,21 @@ class _bmiPageState extends State<bmiPage> {
                   Material(
                     color: Colors.transparent,
                     child: Container(
-                      margin: EdgeInsets.only(top: 100),
+                      margin: EdgeInsets.only(top: 120),
                       width: 250,
-                      height: 80,
+                      height: 60,
                       child: Text(
                         "BMI 계산하기",
                         textAlign: TextAlign.center,
                         style: TextStyle(
-                            fontFamily: "newone",
-                            fontSize: 40,
+                            fontFamily: "aggroB",
+                            fontSize: 38,
                             color: Colors.black),
                       ),
                     ),
                   ),
               Container(
-                margin: EdgeInsets.only(top:30, bottom: 20),
+                margin: EdgeInsets.only(top:20, bottom: 20),
                 width: 320,
                 child: Card(
                   color: Colors.white,
@@ -120,7 +120,7 @@ class _bmiPageState extends State<bmiPage> {
                         ),
                         ElevatedButton(
                           onPressed: _calculate,
-                          child: Text('계산'),
+                          child: Text('계산', style: TextStyle(fontFamily: 'aggroB'),),
                         ),
                         SizedBox(
                           height: 30,
@@ -139,6 +139,7 @@ class _bmiPageState extends State<bmiPage> {
                           child: Text(
                             _message,
                             textAlign: TextAlign.center,
+                            style: TextStyle(fontSize: 20),
                           ),
                         ),
                       ],

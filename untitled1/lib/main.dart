@@ -12,6 +12,8 @@ void main() {
   ));
 }
 
+var _bmi = Get.arguments;
+
 class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
