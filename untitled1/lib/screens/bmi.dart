@@ -20,6 +20,8 @@ class bmiPage extends StatefulWidget {
 }
 
 class _bmiPageState extends State<bmiPage> {
+  var _bmi =  Get.arguments['bmi'];
+  var _weight;
   // the controller for the text field associated with "height"
   final _heightController = TextEditingController();
 
@@ -27,7 +29,7 @@ class _bmiPageState extends State<bmiPage> {
   final _weightController = TextEditingController();
 
   // The BMI
-  double? _bmi;
+  // double? _bmi;
 
   // the message at the beginning
   String _message = '키와 몸무게를 입력하세요!';
@@ -50,6 +52,7 @@ class _bmiPageState extends State<bmiPage> {
     }
 
     setState(() {
+      _weight = weight;
       _bmi = weight / ((height * height) / 10000);
       if (_bmi! < 18.5) {
         _message = "저체중이에요!";
@@ -169,7 +172,7 @@ class _bmiPageState extends State<bmiPage> {
                     style: TextStyle(color: Colors.black, fontFamily: 'aggroL'),
                   ),
                   onPressed: () {
-                    Get.to(() => MyHomePage(), arguments: _bmi);
+                    Get.to(() => MyHomePage(), arguments: {'bmi': _bmi, 'weight':_weight});
                   })
             ]))));
   }
