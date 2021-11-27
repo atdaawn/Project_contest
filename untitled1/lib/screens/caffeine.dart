@@ -22,8 +22,8 @@ class CInputForm extends StatefulWidget {
 class _CInputFormState extends State<CInputForm> {
   final _caffeineController = TextEditingController();
 
-  var _caffeine = Get.arguments['caffeine'];
-  var _weight  = Get.arguments['weight'];
+  double _caffeine = 0;
+  var _weight;
   String _message = '섭취한 카페인량을 추가해주세요!';
 
   void _calculate() {
@@ -42,7 +42,11 @@ class _CInputFormState extends State<CInputForm> {
       return;
     }
     setState(() {
-      _caffeine = _caffeine + coffee;
+      _weight = Get.parameters['param'];
+      print(_weight);
+      print(_caffeine);
+      print(coffee);
+      // int sum = _caffeine + coffee;
       if (_caffeine > _weight * 2.5){
         _message = '권장량을 초과했어요!';
       }
@@ -66,7 +70,7 @@ class _CInputFormState extends State<CInputForm> {
                     color: Colors.transparent,
                     child: Container(
                       margin: EdgeInsets.only(top: 100),
-                      width: 250,
+                      width: 270,
                       height: 60,
                       child: Text(
                         "카페인 계산하기",
@@ -78,7 +82,7 @@ class _CInputFormState extends State<CInputForm> {
                   ),
                   Container(
                     margin: EdgeInsets.only(bottom: 10),
-                    width: 320,
+                    width: 340,
                     child: Card(
                       color: Colors.white,
                       elevation: 10,
@@ -92,6 +96,14 @@ class _CInputFormState extends State<CInputForm> {
                               TextInputType.numberWithOptions(decimal: true),
                               decoration: InputDecoration(labelText: '카페인 섭취량 (mg)'),
                               controller: _caffeineController,
+                            ),
+                            Container(
+                              margin: EdgeInsets.only(top: 10, bottom: 10),
+                              child: Text(
+                                '카페인 권장량(청소년) =  1kg 당 2.5mg 이하 \n등록된 몸무게로 오늘 섭취량을 평가해요',
+                                style: TextStyle(fontSize: 12, fontFamily: 'CafeL'),
+                                textAlign: TextAlign.center,
+                              ),
                             ),
                             ElevatedButton(
                               onPressed: _calculate,
@@ -108,7 +120,7 @@ class _CInputFormState extends State<CInputForm> {
                             ),
                             Container(
                               child: Text(
-                                _caffeine == null ? '--' : _caffeine!.toStringAsFixed(1),
+                                _caffeine == null ? '--' : _caffeine.toStringAsFixed(2),
                                 style: TextStyle(fontSize: 50),
                                 textAlign: TextAlign.center,
                               ),
@@ -120,7 +132,7 @@ class _CInputFormState extends State<CInputForm> {
                               child: Text(
                                 _message,
                                 textAlign: TextAlign.center,
-                                style: TextStyle(fontSize: 20),
+                                style: TextStyle(fontSize: 15),
                               ),
                             ),
                           ],
@@ -136,7 +148,7 @@ class _CInputFormState extends State<CInputForm> {
                         style: TextStyle(color: Colors.black, fontFamily: 'aggroL'),
                       ),
                       onPressed: () {
-                        Get.to(() => MyHomePage(), arguments: {'caffeine':_caffeine});
+                        Get.back(result: _caffeine.toStringAsFixed(2));
                       })
                 ]))));
   }

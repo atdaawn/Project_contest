@@ -6,8 +6,20 @@ import 'package:get/get.dart';
 
 void main() {
   runApp(GetMaterialApp(
+    initialRoute: '/',
+    getPages: [
+      GetPage(
+        name: '/one/:param',
+        page: () => CInputForm(),
+        transition: Transition.zoom
+      ),
+      GetPage(
+        name: '/two',
+        page: () => bmiPage(),
+      ),
+    ],
     title: 'Mainpage',
-    theme: ThemeData(),
+    theme: ThemeData(fontFamily: 'Cafe'),
     home: MyHomePage(),
   ));
 }
@@ -19,8 +31,10 @@ class MyHomePage extends StatefulWidget {
 
 class _MyHomePageState extends State<MyHomePage> {
   var _bmi;
-  var _caffeine;
-  var _weight;
+  var health;
+  int _caffeine = 0;
+  int _weight = 0;
+  var _toadd;
 
   // void cal() {
   //   if (_caffeine == null) {
@@ -112,9 +126,27 @@ class _MyHomePageState extends State<MyHomePage> {
                                   materialTapTargetSize:
                                       MaterialTapTargetSize.shrinkWrap,
                                   shape: StadiumBorder(),
-                                  onPressed: () {
-                                    Get.to(() => CInputForm(),
-                                        arguments: {'caffeine':_caffeine, 'weight':_weight});
+                                  onPressed: () async {
+                                    print(health);
+                                    print(_weight);
+                                    print(_bmi);
+                                  // Get.to(() => bmiPage(), arguments: {'bmi': _bmi});
+                                    if (_bmi != null) {
+                                      Get.toNamed(
+                                          '/one/$_weight?caffeine=$_caffeine');
+                                    }else{
+                                      ScaffoldMessenger.of(context).showSnackBar(
+                                          const SnackBar(
+                                            content: Text('bmi 계산을 완료해야 이용하실 수 있습니다.'),
+                                          ));
+                                      print(111);
+                                    }
+                                  // final plus_coffee = await Get.to(CInputForm(), transition: Transition.zoom);
+
+
+                                  setState(() {
+                                    // _caffeine = plus_coffee;
+                                  });
                                   },
                                   child: Padding(
                                     padding: const EdgeInsets.all(8.0),
@@ -160,10 +192,13 @@ class _MyHomePageState extends State<MyHomePage> {
                                   shape: StadiumBorder(),
                                   onPressed: () async {
                                     // Get.to(() => bmiPage(), arguments: {'bmi': _bmi});
-                                    final bmi = await Get.to(bmiPage());
-
+                                    health = await Get.to(bmiPage(), transition: Transition.zoom);
+                                    print(health);
                                     setState(() {
-                                      _bmi = bmi;
+                                      _bmi = health[0];
+                                      _weight = health[1];
+                                      // print(_weight);
+                                      // print(_bmi);
                                     });
                                   },
                                   child: Padding(
@@ -329,8 +364,7 @@ class _MyHomePageState extends State<MyHomePage> {
                                                 child: Text(
                                                   _caffeine == null
                                                       ? 'null'
-                                                      : _caffeine!
-                                                          .toStringAsFixed(1),
+                                                      : _caffeine.toString(),
                                                   style: TextStyle(
                                                       fontSize: 20,
                                                       color: Colors.white,fontFamily: 'CafeL'),

@@ -6,6 +6,18 @@ class bmi extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GetMaterialApp(
+      initialRoute: '/',
+      getPages: [
+        GetPage(
+            name: '/home/:param',
+            page: () => MyHomePage(),
+            transition: Transition.zoom
+        ),
+        GetPage(
+          name: '/two',
+          page: () => bmiPage(),
+        ),
+      ],
       debugShowCheckedModeBanner: false,
       theme: ThemeData(fontFamily: 'CafeL'),
       title: 'bmi 측정기',
@@ -173,7 +185,8 @@ class _bmiPageState extends State<bmiPage> {
                   ),
                   onPressed: () {
                     // Get.to(() => MyHomePage(), arguments: {'bmi': _bmi, 'weight':_weight});
-                    Get.back(result: _bmi.toStringAsFixed(2));
+                    final golist = [(_bmi.round()), (_weight.round())];
+                    Get.back(result: golist);
                   })
             ]))));
   }
