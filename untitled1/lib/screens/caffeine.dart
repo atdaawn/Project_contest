@@ -78,7 +78,7 @@ class _CInputFormState extends State<CInputForm> {
         decoration: BoxDecoration(
           image: DecorationImage(
             fit: BoxFit.cover,
-            image: AssetImage('assets/bmi.jpg'), // 배경 이미지
+            image: AssetImage('assets/caffeine.jpg'), // 배경 이미지
           ),
         ),
         child: Scaffold(

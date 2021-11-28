@@ -1,11 +1,19 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:hive/hive.dart';
+import 'package:untitled1/screens/Envelope.dart';
+import 'package:untitled1/screens/calculator.dart';
+import 'package:untitled1/screens/walking.dart';
+import 'package:hive_flutter/hive_flutter.dart';
 import 'StateManage/state.dart';
 import 'screens/caffeine.dart';
 import 'screens/bmi.dart';
 import 'package:get/get.dart';
 
-void main() {
+Future<void> main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await Hive.initFlutter();
+  await Hive.openBox<int>('steps');
   runApp(GetMaterialApp(
     initialRoute: '/',
     getPages: [
@@ -61,10 +69,12 @@ class _MyHomePageState extends State<MyHomePage> {
         decoration: BoxDecoration(
           image: DecorationImage(
             fit: BoxFit.cover,
-            image: AssetImage('assets/picture.png'), // 배경 이미지
+            image: AssetImage('assets/main.jpg'), // 배경 이미지
           ),
         ),
         child: Scaffold(
+            resizeToAvoidBottomInset: false,
+            backgroundColor: Colors.transparent,
             body: Center(
               child: Column(children: <Widget>[
                 Padding(
@@ -233,7 +243,7 @@ class _MyHomePageState extends State<MyHomePage> {
                             children: <Widget>[
                               Container(
                                 margin: EdgeInsets.all(10),
-                                width: 160,
+                                width: 120,
                                 height: 45,
                                 decoration: BoxDecoration(
                                   borderRadius: BorderRadius.circular(30),
@@ -241,8 +251,8 @@ class _MyHomePageState extends State<MyHomePage> {
                                     begin: Alignment.centerLeft,
                                     end: Alignment.centerRight,
                                     colors: [
-                                      Color(0xffFED9E8),
-                                      Color(0xffFED9E8)
+                                      Color(0xffc9b7bd),
+                                      Color(0xffbfacb3)
                                     ],
                                   ),
                                 ),
@@ -251,10 +261,7 @@ class _MyHomePageState extends State<MyHomePage> {
                                       MaterialTapTargetSize.shrinkWrap,
                                   shape: StadiumBorder(),
                                   onPressed: () {
-                                    Navigator.push(
-                                        context,
-                                        MaterialPageRoute(
-                                            builder: (_) => caffeine()));
+                                    Get.to(() => CalcApp());
                                   },
                                   child: Padding(
                                     padding: const EdgeInsets.all(8.0),
@@ -263,10 +270,10 @@ class _MyHomePageState extends State<MyHomePage> {
                                           MainAxisAlignment.center,
                                       children: <Widget>[
                                         Text(
-                                          '카페인 계산',
+                                          '계산기',
                                           style: TextStyle(
                                             fontSize: 20,
-                                            color: Colors.black,
+                                            color: Colors.white,fontFamily: 'CafeL'
                                           ),
                                         ),
                                       ],
@@ -298,8 +305,11 @@ class _MyHomePageState extends State<MyHomePage> {
                                   materialTapTargetSize:
                                       MaterialTapTargetSize.shrinkWrap,
                                   shape: StadiumBorder(),
-                                  onPressed: () {
-                                    Get.to(() => bmiPage());
+                                  onPressed: () async {
+                                    // WidgetsFlutterBinding.ensureInitialized();
+                                    // Hive.openBox<int>('steps');
+                                    // runApp(Walking());
+                                    Get.to(() => Walking());
                                   },
                                   child: Padding(
                                     padding: const EdgeInsets.all(8.0),
@@ -308,10 +318,11 @@ class _MyHomePageState extends State<MyHomePage> {
                                           MainAxisAlignment.center,
                                       children: <Widget>[
                                         Text(
-                                          'BMI',
+                                          '만보기',
                                           style: TextStyle(
                                             fontSize: 20,
                                             color: Colors.black,
+                                            fontFamily: 'CafeL'
                                           ),
                                         ),
                                       ],
@@ -325,7 +336,7 @@ class _MyHomePageState extends State<MyHomePage> {
                             margin: EdgeInsets.only(top: 10),
                             width: 320,
                             child: Card(
-                                color: Color(0xffDD95B9),
+                                color: Color(0xc8ff93be),
                                 child: Padding(
                                   padding: const EdgeInsets.all(20),
                                   child: Column(
@@ -393,10 +404,13 @@ class _MyHomePageState extends State<MyHomePage> {
                         ])),
               ]),
             ),
-            // floatingActionButton: FloatingActionButton(
-            //   onPressed: pass,
-            //   child: Text("🔄"),
-            // )
+            floatingActionButton: FloatingActionButton(
+              backgroundColor: Color(0xc8e493f3),
+              onPressed:(){
+                Get.to(() => Envelope());
+              },
+              child: Text("💌"),
+            )
         ));
   }
 }
