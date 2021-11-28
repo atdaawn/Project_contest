@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'StateManage/state.dart';
 import 'screens/caffeine.dart';
 import 'screens/bmi.dart';
 import 'package:get/get.dart';
@@ -32,7 +33,7 @@ class MyHomePage extends StatefulWidget {
 class _MyHomePageState extends State<MyHomePage> {
   var _bmi;
   var health;
-  int _caffeine = 0;
+  int _caffeine = Get.arguments;
   int _weight = 0;
   var _toadd;
 
@@ -54,6 +55,7 @@ class _MyHomePageState extends State<MyHomePage> {
   // }
 
   @override
+  final controller = Get.put(CaffeineController());
   Widget build(BuildContext context) {
     return Container(
         decoration: BoxDecoration(
@@ -127,26 +129,29 @@ class _MyHomePageState extends State<MyHomePage> {
                                       MaterialTapTargetSize.shrinkWrap,
                                   shape: StadiumBorder(),
                                   onPressed: () async {
-                                    print(health);
-                                    print(_weight);
-                                    print(_bmi);
-                                  // Get.to(() => bmiPage(), arguments: {'bmi': _bmi});
-                                    if (_bmi != null) {
-                                      Get.toNamed(
-                                          '/one/$_weight?caffeine=$_caffeine');
+                                    // print(health);
+                                    // print(_weight);
+                                    // print(_bmi);
+                                    // print(health.runtimeType); //새로 추가완료
+                                    // final cafew = [_weight,_caffeine];
+                                    if (controller.newbmi != 0.00) {
+                                      print(health);
+                                      // Get.toNamed(
+                                      //     '/one/$_weight?caffeine=$_caffeine');
+                                      Get.to(() => CInputForm(),transition: Transition.zoom);
                                     }else{
                                       ScaffoldMessenger.of(context).showSnackBar(
                                           const SnackBar(
                                             content: Text('bmi 계산을 완료해야 이용하실 수 있습니다.'),
                                           ));
-                                      print(111);
+                                      // print(111);
                                     }
                                   // final plus_coffee = await Get.to(CInputForm(), transition: Transition.zoom);
 
 
-                                  setState(() {
-                                    // _caffeine = plus_coffee;
-                                  });
+                                  // setState(() {
+                                  //   _caffeine = int.parse(Get.arguments['first']);
+                                  // });
                                   },
                                   child: Padding(
                                     padding: const EdgeInsets.all(8.0),
@@ -190,16 +195,18 @@ class _MyHomePageState extends State<MyHomePage> {
                                   materialTapTargetSize:
                                       MaterialTapTargetSize.shrinkWrap,
                                   shape: StadiumBorder(),
-                                  onPressed: () async {
+                                  onPressed: (){
                                     // Get.to(() => bmiPage(), arguments: {'bmi': _bmi});
-                                    health = await Get.to(bmiPage(), transition: Transition.zoom);
-                                    print(health);
-                                    setState(() {
-                                      _bmi = health[0];
-                                      _weight = health[1];
-                                      // print(_weight);
-                                      // print(_bmi);
-                                    });
+                                    // final health1 = await Get.to(bmiPage(), transition: Transition.zoom);
+                                    // health = health1;
+                                    // print(health);
+                                    // setState(() {
+                                    //   _bmi = health[0];
+                                    //   _weight = health[1];
+                                    //   // print(_weight);
+                                    //   // print(_bmi);
+                                    // });
+                                    Get.to(() => bmiPage(),transition: Transition.zoom);
                                   },
                                   child: Padding(
                                     padding: const EdgeInsets.all(8.0),
@@ -337,14 +344,22 @@ class _MyHomePageState extends State<MyHomePage> {
                                                       color: Colors.white),
                                                 ),
                                               ),
-                                              Container(
-                                                child: Text(
-                                                  '$_bmi',
-                                                  style: TextStyle(
-                                                      fontSize: 20,
-                                                      color: Colors.white,fontFamily: 'CafeL'),
-                                                  textAlign: TextAlign.center,
-                                                ),
+                                              // Container(
+                                              //   child: Text(
+                                              //     '$_bmi',
+                                              //     style: TextStyle(
+                                              //         fontSize: 20,
+                                              //         color: Colors.white,fontFamily: 'CafeL'),
+                                              //     textAlign: TextAlign.center,
+                                              //   ),
+                                              // ),
+                                              GetBuilder<CaffeineController>(
+                                                builder: (_) {
+                                                  return Text('${_.newbmi}',
+                                                      style: TextStyle(fontSize: 20,color: Colors.white,fontFamily: 'CafeL'),
+                                                    textAlign: TextAlign.center,
+                                                  );
+                                                },
                                               ),
                                             ]),
                                         Row(
@@ -361,16 +376,16 @@ class _MyHomePageState extends State<MyHomePage> {
                                                 ),
                                               ),
                                               Container(
-                                                child: Text(
-                                                  _caffeine == null
-                                                      ? 'null'
-                                                      : _caffeine.toString(),
-                                                  style: TextStyle(
-                                                      fontSize: 20,
-                                                      color: Colors.white,fontFamily: 'CafeL'),
-                                                  textAlign: TextAlign.center,
+                                                child: GetBuilder<CaffeineController>(
+                                                  builder: (_) {
+                                                    return Text('${_.newcafe}',
+                                                      style: TextStyle(fontSize: 20,color: Colors.white,fontFamily: 'CafeL'),
+                                                      textAlign: TextAlign.center,
+                                                    );
+                                                  },
                                                 ),
                                               ),
+
                                             ]),
                                       ]),
                                 )),

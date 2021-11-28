@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:untitled1/StateManage/state.dart';
 import '../main.dart';
 import 'package:get/get.dart';
 
@@ -32,8 +33,6 @@ class bmiPage extends StatefulWidget {
 }
 
 class _bmiPageState extends State<bmiPage> {
-  var _bmi;
-  var _weight;
   // the controller for the text field associated with "height"
   final _heightController = TextEditingController();
 
@@ -46,37 +45,6 @@ class _bmiPageState extends State<bmiPage> {
   // the message at the beginning
   String _message = '키와 몸무게를 입력하세요!';
 
-  void _calculate() {
-    final double? height = double.tryParse(_heightController.value.text);
-    final double? weight = double.tryParse(_weightController.value.text);
-
-    // Check if the inputs are valid
-    if (height == null || height <= 0 || weight == null || weight <= 0) {
-      setState(() {
-        _message = "키와 몸무게 입력이 잘못되었어요";
-        ScaffoldMessenger.of(context).showSnackBar(
-          const SnackBar(
-            content: Text('다시 입력해주세요!'),
-          ),
-        );
-      });
-      return;
-    }
-
-    setState(() {
-      _weight = weight;
-      _bmi = weight / ((height * height) / 10000);
-      if (_bmi! < 18.5) {
-        _message = "저체중이에요!";
-      } else if (_bmi! < 25) {
-        _message = '정상입니다';
-      } else if (_bmi! < 30) {
-        _message = '과체중이에요!';
-      } else {
-        _message = '고도비만이에요!';
-      }
-    });
-  }
 
   // void goout(){
   //   final double? height = double.tryParse(_heightController.value.text);
@@ -90,6 +58,7 @@ class _bmiPageState extends State<bmiPage> {
 
   @override
   Widget build(BuildContext context) {
+    final controller = Get.put(CaffeineController());
     return Container(
         decoration: BoxDecoration(
           image: DecorationImage(
@@ -142,7 +111,38 @@ class _bmiPageState extends State<bmiPage> {
                           controller: _weightController,
                         ),
                         ElevatedButton(
-                          onPressed: _calculate,
+                          onPressed: (){
+                            // var bmi = _calculate; controller.forw(_weight.round());
+                          // controller.forb(bmi.round());
+                            final double? height = double.tryParse(_heightController.value.text);
+                            final double? weight = double.tryParse(_weightController.value.text);
+                            if(height == null || height <= 0 || weight == null || weight <= 0) {
+                              setState(() {
+                                _message = "키와 몸무게 입력이 잘못되었어요";
+                                ScaffoldMessenger.of(context).showSnackBar(
+                                  const SnackBar(
+                                    content: Text('다시 입력해주세요!'),
+                                  ),
+                                );
+                              });
+                            }else{
+                             var _bmi = (weight / ((height * height) / 10000)).toStringAsFixed(2);
+                              controller.forw(weight.round());
+                              controller.forb(_bmi);
+                             setState(() {
+                               if (double.parse(_bmi) < 18.5) {
+                                 _message = "저체중이에요!";
+                               } else if (double.parse(_bmi) < 25) {
+                                 _message = '정상입니다!';
+                               } else if (double.parse(_bmi) < 30) {
+                                 _message = '과체중이에요!';
+                               } else {
+                                 _message = '고도비만이에요!';
+                               }
+                             });
+
+                            }
+                          },
                           style: ElevatedButton.styleFrom(
                               primary: Color(0xffFED9E8),
                               onPrimary: Colors.black),
@@ -155,12 +155,14 @@ class _bmiPageState extends State<bmiPage> {
                           height: 30,
                         ),
                         Container(
-                          child: Text(
-                            _bmi == null ? '--' : _bmi!.toStringAsFixed(2),
-                            style: TextStyle(fontSize: 50),
-                            textAlign: TextAlign.center,
+                          child: GetBuilder<CaffeineController>(
+                            builder: (_) {
+                              return Text('${_.newbmi}',
+                                  style: TextStyle(fontSize: 50));
+                            },
                           ),
                         ),
+
                         SizedBox(
                           height: 20,
                         ),
@@ -168,7 +170,7 @@ class _bmiPageState extends State<bmiPage> {
                           child: Text(
                             _message,
                             textAlign: TextAlign.center,
-                            style: TextStyle(fontSize: 20),
+                            style: TextStyle(fontSize: 16),
                           ),
                         ),
                       ],
@@ -176,18 +178,19 @@ class _bmiPageState extends State<bmiPage> {
                   ),
                 ),
               ),
-              ElevatedButton(
-                  style: ElevatedButton.styleFrom(
-                      primary: Color(0xffdbbae0), onPrimary: Colors.white),
-                  child: Text(
-                    "저장",
-                    style: TextStyle(color: Colors.black, fontFamily: 'aggroL'),
-                  ),
-                  onPressed: () {
-                    // Get.to(() => MyHomePage(), arguments: {'bmi': _bmi, 'weight':_weight});
-                    final golist = [(_bmi.round()), (_weight.round())];
-                    Get.back(result: golist);
-                  })
+              // ElevatedButton(
+              //     style: ElevatedButton.styleFrom(
+              //         primary: Color(0xffdbbae0), onPrimary: Colors.white),
+              //     child: Text(
+              //       "저장",
+              //       style: TextStyle(color: Colors.black, fontFamily: 'aggroL'),
+              //     ),
+              //     onPressed: () {
+              //       // Get.to(() => MyHomePage(), arguments: {'bmi': _bmi, 'weight':_weight});
+              //       // final golist = [(_bmi.round()), (_weight.round())];
+              //       // Get.back(result: golist);
+              //       Get.to(() => MyHomePage());
+              //     })
             ]))));
   }
 }
